@@ -50,7 +50,9 @@ class SelectionSort:
     def update(self, _):
         self.ul_to_ol()
         self.ax_properties()
-        self.ax.set_title("Sorting {:d} of {:d} elements in {:.2f} seconds".format(self.d + 1, len(self.ol), self.toc()))
+        self.ax.set_title("Sorting {:d} of {:d} elements in {:.2f} seconds".format(self.d + 1,
+                                                                                   len(self.ol),
+                                                                                   self.toc()))
         self.ax.bar([i for i in range(len(self.ol))], self.ol)
         if self.done:
             time.sleep(3)
@@ -62,12 +64,16 @@ class SelectionSort:
 
 
 def main():
-    n = 50
-    m = 100
-    unsorted_list = [random.randint(0, m) for _ in range(n)]
+    n = 5000
+    m = 1000000
+    unsorted_list = random.sample(range(0, m), n)
     selection_sort = SelectionSort(unsorted_list, m)
-    selection_sort.draw()
+    '''selection_sort.draw()'''
+    selection_sort.ul_to_ol()
 
 
 if __name__ == "__main__":
+    t1 = time.time()
     main()
+    t2 = time.time()
+    print("{:e}".format(t2 - t1))
