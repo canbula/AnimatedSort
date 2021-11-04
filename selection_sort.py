@@ -12,9 +12,18 @@ class SelectionSort:
         self.d = 0
         self.limit = limit
         self.done = False
+        self.t1 = 0
+        self.t2 = 0
         matplotlib.use("TkAgg")
         plt.rcParams["figure.figsize"] = [8, 6]
         self.fig, self.ax = plt.subplots()
+
+    def tic(self):
+        self.t1 = time.time()
+
+    def toc(self):
+        self.t2 = time.time()
+        return self.t2 - self.t1
 
     def ul_to_ol(self):
         m = self.limit
@@ -34,12 +43,14 @@ class SelectionSort:
         self.ax.set_title("Animated Sort")
 
     def init(self):
+        self.tic()
         self.ax_properties()
         self.ax.bar([i for i in range(len(self.ul))], self.ul)
 
     def update(self, _):
         self.ul_to_ol()
         self.ax_properties()
+        self.ax.set_title("Sorting {:d} of {:d} elements in {:.2f} seconds".format(self.d + 1, len(self.ol), self.toc()))
         self.ax.bar([i for i in range(len(self.ol))], self.ol)
         if self.done:
             time.sleep(3)
