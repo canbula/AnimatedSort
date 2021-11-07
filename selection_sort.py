@@ -64,12 +64,12 @@ class SelectionSort:
 
 
 def main():
-    n = 5000
-    m = 1000000
+    n = 50
+    m = 1000
     unsorted_list = random.sample(range(0, m), n)
     selection_sort = SelectionSort(unsorted_list, m)
-    '''selection_sort.draw()'''
-    selection_sort.ul_to_ol()
+    selection_sort.draw()
+    '''selection_sort.ul_to_ol()'''
 
 
 if __name__ == "__main__":
